@@ -1,4 +1,4 @@
-# ![alt text](https://i.imgur.com/s7aLwxT.png "Guess Card")  Guessing Card
+# ![alt text](https://i.imgur.com/a5DHwrO.png "Guess Card")  Guessing Card
 
 Live Web:
 
