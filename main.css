@@ -20,7 +20,7 @@ header {
 main {
     width: 80%;
     margin: auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .cards {
@@ -29,11 +29,10 @@ main {
     grid-template-rows: repeat(3, 140px);
     gap: 20px;
     margin: 20px 0;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .cards .card {
-    border: 1px solid red;
     font-size: 1.5em;
     font-weight: 500;
     width: 100%;
@@ -44,4 +43,52 @@ main {
     justify-content: center;
     border-radius: 10px;
     background-color: #292929;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 10px;
+    perspective: 1000px;
+    /* border: 1px solid red; */
+}
+
+.rotate180 {
+    transform: rotateY(180deg);
+}
+
+.flip-card-inner {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-card-back {
+    font-size: 1.1em;
+    color: red;
+    width: 95px;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: rgb(244, 244, 244);
+    transform: rotateY(180deg);
 }
