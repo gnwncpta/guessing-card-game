@@ -1,38 +1,68 @@
 const cards = document.querySelectorAll('.flip-card-front');
 const cardInner = document.querySelectorAll('.flip-card-inner');
+const cardsContainer = document.querySelector('.cards')
 const scoreDOM = document.querySelector('.score');
 const startButton = document.querySelector('.start');
 const blackBg = document.querySelector('.black');
 const cardValue = document.querySelectorAll('.flip-card-back');
 
+// Win Popup DOM Selection
+const winModal = document.querySelector('.win');
+const newGameButton = document.querySelector('.new-game');
 
-// Available Cards (Role)
-// AS, King, Queen, Poker, Joker, Jack
+let score = 0;
+let arrCards = [];
+let innerCards = [];
+let collection = [];
 
+// Randomize Card Function
 const randomizeCard = () => {
+    let card = '';
 
-    const role = ['AS', 'King', 'Queen', 'Jack', 'Poker', 'Joker'];
+    const role = ['AS', 'AS', 'King', 'King', 'Queen', 'Queen', 'Jack', 'Jack', 'Poker', 'Poker', 'Joker', 'Joker'];
 
-    cardInner.forEach((card, index) => {
-        console.log(card);
+    const callRole = [];
+
+    role.forEach(each => {
+        card += `<div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="./img/cards.png" width="95px">
+                        </div>
+                        <div class="flip-card-back">${each}</div>
+                    </div>
+                </div>`
     });
+
+    cardsContainer.innerHTML = card;
 }
 
 // Start Event
 startButton.addEventListener('click', function(){
     blackBg.classList.add('hidden');
-
-    // randomizeCard();
+    randomizeCard();
 });
 
+// newGameButton.addEventListener('click', function(){
+//     winModal.classList.add('hidden')
+// })
 
-let score = 0;
-let arrCards = [];
-let innerCards = [];
+const winPopup = (score) => {
+    let winDOM = '';
+    winDOM += `<h1>You Won!</h1>
+                <h5>Your High Score is</h5>
+                <p>${score}</p>
+                <button class="new-game">New Game</button>`;
 
+    winModal.innerHTML = winDOM;
+    winModal.classList.remove('hidden');
+}
+
+// CheckCard Function
 const checkCard = (value, inner) => {
     arrCards.push(value);
     innerCards.push(inner);
+    console.log(collection)
 
     // Inspection arrays
     // console.log(arrCards);
@@ -41,8 +71,7 @@ const checkCard = (value, inner) => {
     if(arrCards.length == 2 && arrCards[0] == arrCards[1]){
 
         setTimeout(() => {
-            score += 2;
-            scoreDOM.innerHTML = score;
+            scoreDOM.innerHTML = score += 2;
             // console.log(arrCards);
         }, 800)
 
@@ -53,6 +82,15 @@ const checkCard = (value, inner) => {
 
         // remove cards from array
         arrCards = [];
+
+        collection.push(value);
+
+        setTimeout(() => {
+            if(collection.length == 6){
+                winPopup(score);
+            }
+        }, 950)
+        // If Done All Cards
 
     } else if (arrCards.length == 2 && arrCards[0] != arrCards[1]){
 
@@ -80,13 +118,27 @@ const checkCard = (value, inner) => {
     }
 }
 
-cards.forEach(card => {
-    card.addEventListener('click', function(e){
+// Cards Event
+// cards.forEach(card => {
+//     card.addEventListener('click', function(e){
+//         if(innerCards.length < 2){
+//             const cardInner = e.target.parentElement.parentElement;
+//             const value = e.target.parentElement.parentElement.childNodes[3].textContent;
+//             cardInner.classList.add('rotate180');
+//             checkCard(value, cardInner);
+//         }
+//     });
+// });
+
+document.addEventListener('click', function(e){
+    const target = e.target.localName
+
+    if(target == 'img'){
         if(innerCards.length < 2){
             const cardInner = e.target.parentElement.parentElement;
-            const value = e.target.parentElement.parentElement.childNodes[3].textContent;
+            const cardValue = e.target.parentElement.parentElement.childNodes[3].textContent;
             cardInner.classList.add('rotate180');
-            checkCard(value, cardInner);
+            checkCard(cardValue, cardInner);
         }
-    });
-});
+    }
+})
