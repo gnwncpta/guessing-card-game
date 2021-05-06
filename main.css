@@ -88,7 +88,7 @@ header {
     width: 100%;
     height: 100%;
     background-color: black;
-    opacity: .8;
+    opacity: .85;
     position: absolute;
     top: 0;
     z-index: 10;
@@ -133,7 +133,7 @@ header {
     }
 
     100% {
-        opacity: .8;
+        opacity: .85;
     }
 }
 
@@ -338,6 +338,17 @@ main {
     transform: rotateY(180deg);
 }
 
+.retry-mobile {
+    margin-top: 40px;
+    background-color: rgb(224, 224, 224);
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #292929;
+    font-weight: 500;
+    text-align: center;
+    display: none;
+}
+
 
 /* Responsice Mobile L - 375px */
 
@@ -389,6 +400,15 @@ main {
     .win {
         width: 60%;
         left: 10%;
+    }
+
+    .retry-mobile {
+        display: block;
+    }
+
+    .retry-mobile:hover {
+        background-color: #292929;
+        color: white;
     }
     
 }

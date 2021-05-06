@@ -15,6 +15,9 @@ const newGameButton = document.querySelector('.new-game');
 const startGame = document.querySelector('.start-game');
 const startButton = document.querySelector('.start');
 
+// Retry DOM Selection
+const retry = document.querySelector('.retry-mobile');
+
 let score = 0;
 let arrCards = [];
 let innerCards = [];
@@ -75,6 +78,11 @@ document.addEventListener('click', function(e){
         blackBg.classList.add('hidden');
     }
 });
+
+// Retry Event
+retry.addEventListener('click', function(){
+    location.reload();
+})
 
 // CheckCard Function
 const checkCard = (value, inner) => {
