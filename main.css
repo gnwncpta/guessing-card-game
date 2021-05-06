@@ -20,6 +20,70 @@ header {
     /* border: 1px solid red; */
 }
 
+@keyframes slide-down {
+    0% {
+        top: -60%;
+    }
+    100% {
+        top: 25%;
+    }
+}
+
+.start-game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 25%;
+    left: 33%;
+    z-index: 12;
+    width: 30%;
+    height: 250px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 20px;
+    animation: slide-down 1s;
+}
+
+/* .start-game .header {
+    border: 1px solid red; 
+} */
+
+.start-game h1 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.start-game p {
+    text-align: center;
+}
+
+.start-game p.cocok{
+    margin-top: 20px;
+}
+
+.start-game .start {
+    width: 100%;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    color: white;
+    background-color: #292929;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+}
+
+.start-game .start:hover {
+    background-color: rgb(196, 196, 196);
+    color: black;
+    transition: .1s ease-in-out;
+}
+
 .black {
     width: 100%;
     height: 100%;
@@ -32,6 +96,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    animation: opacity-black 1s;
 }
 
 .black button.start {
@@ -51,6 +117,26 @@ header {
     opacity: .3;
 }
 
+@keyframes slide-down-win {
+    0% {
+        top: -60%;
+    }
+
+    100% {
+        top: 23%;
+    }
+}
+
+@keyframes opacity-black {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: .8;
+    }
+}
+
 .win {
     display: flex;
     flex-direction: column;
@@ -66,6 +152,8 @@ header {
     background-color: rgb(20, 20, 20);
     color: white;
     /* border: 1px solid red; */
+
+    animation: slide-down-win 1s;
 }
 
 .win h1 {
@@ -93,6 +181,7 @@ header {
     padding: 10px 0;
     border-radius: 5px;
     cursor: pointer;
+    background-color: white;
 }
 
 .hidden {
@@ -131,6 +220,8 @@ main {
     background-color: transparent;
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
     border-radius: 10px;
     perspective: 1000px;
@@ -141,14 +232,74 @@ main {
     transform: rotateY(180deg);
 }
 
+@keyframes animate-true {
+    0% {
+        border: 2px solid white;
+        border-radius: 10px;
+    }
+
+    25% {
+        border: 2px solid rgb(73, 255, 73);
+        border-radius: 10px;
+        /* background-color: green; */
+    }
+
+    50% {
+        border: 2px solid white;
+        border-radius: 10px;
+    }
+
+    100% {
+        border: 2px solid rgb(73, 255, 73);
+        border-radius: 10px;
+        /* background-color: green; */
+    }
+}
+
+.animate-true {
+    border: 2px solid white;
+    border-radius: 10px;
+    animation: animate-true 1s;
+}
+
+@keyframes animate-false {
+    0% {
+        border: 2px solid white;
+        border-radius: 10px;
+    }
+
+    25% {
+        border: 2px solid rgb(255, 98, 98);
+        border-radius: 10px;
+    }
+
+    50% {
+        border: 2px solid white;
+        border-radius: 10px;
+    }
+
+    100% {
+        border: 2px solid rgb(255, 98, 98);
+        border-radius: 10px;
+    }
+}
+
+.animate-false {
+    border: 2px solid white;
+    border-radius: 10px;
+    animation: animate-false 1s;
+}
+
 .flip-card-inner {
     position: relative;
     height: 100%;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    /* border: 1px solid red; */
 }
 
 .flip-card-front, .flip-card-back {
@@ -156,11 +307,22 @@ main {
     backface-visibility: hidden;
 }
 
+@keyframes opacity-card {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: .4;
+    }
+}
+
 .flip-card-front {
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: .4;
+    animation: opacity-card 1s;
 }
 
 .flip-card-back {
