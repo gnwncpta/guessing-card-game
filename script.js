@@ -30,8 +30,59 @@ const randomizeCard = () => {
     // Logic Random Array
     const role = ['AS', 'AS', 'King', 'King', 'Queen', 'Queen', 'Jack', 'Jack', 'Poker', 'Poker', 'Joker', 'Joker'];
     const num = [3, 7, 11, 9, 4, 2, 5, 1, 8, 6, 0, 10];
+    const randomizeRole = []; // the final index number
 
-    const randomizeRole = [];
+    for(let i = 0; i < role.length; i++){
+        const rand = Math.floor(Math.random() * 11) + 1;
+
+        if(randomizeRole.length === 0) {
+
+            console.log(`Mengisi randomizeRole dengan ${rand}`);
+            randomizeRole.push(rand); // insert random number on randomizeRole
+            console.log(`isi pertama dari randomizeRole: ${randomizeRole[0]}`)
+
+        } else if(randomizeRole.length > 0) {
+            //randomizeRole.push(rand); // insert random number on randomizeRole
+
+            // Loop the randomizeRole
+            randomizeRole.forEach((isi, index) => {
+                console.log(`Looping ke ${index}`)
+                console.log(isi);
+                if(isi === rand){
+                    console.log(`isi = ${isi} || rand = ${rand} sama`)
+
+                } else {
+                    console.log(`isi = ${isi} || rand = ${rand} beda`)
+                    randomizeRole.push(rand)
+                }
+                console.log('+----------------+')
+
+            })
+            console.warn('=======================')
+
+            // for(let x = 0; x < randomizeRole.length; x++) {
+            //     if(randomizeRole[x] === rand){
+            //         console.log('Duplikat')
+            //         if(randomizeRole.length === 12){
+            //             console.log('Done')
+            //         } else if(randomizeRole.length < 12){
+            //             randomizeRole[x] = rand;
+            //         }
+            //     } else if(randomizeRole[x] != rand){
+            //         randomizeRole.push(rand);
+            //     }
+            // }
+        }
+
+        // if(randomizeRole[i] == rand){
+        //     console.log(`${randomizeRole[i]} & ${rand} is same`)
+        // } else if(randomizeRole[i] != rand){
+        //     randomizeRole.push(rand);
+        // }
+    }
+
+    console.warn('END.')
+    console.log(randomizeRole);
 
     role.forEach((each, index) => {
         card += `<div class="flip-card">
@@ -39,7 +90,7 @@ const randomizeCard = () => {
                         <div class="flip-card-front">
                             <img src="./img/cards.png" width="95px">
                         </div>
-                        <div class="flip-card-back">${role[num[index]]}</div>
+                        <div class="flip-card-back">${role[randomizeRole[index]]}</div>
                     </div>
                 </div>`;
     });
